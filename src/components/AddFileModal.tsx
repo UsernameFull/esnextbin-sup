@@ -1,5 +1,4 @@
-import React = require("react");
-
+import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
@@ -7,7 +6,7 @@ import Modal from "react-bootstrap/Modal";
 
 export const AddFileModal = (props: any) => {
   const { show, onHide, onSubmit } = props;
-  const [fileName, setFileName] = React.useState("");
+  const [fileName, setFileName] = useState("");
 
   const handleClose = () => onHide();
   const handleSubmit = () => {

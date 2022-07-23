@@ -1,8 +1,6 @@
 //import './App.css';
-import React = require("react");
-import { version } from "./wasm/useEsbuild";
+import { useState } from "react";
 import { AEditor } from "./AEditor";
-import PubSub = require("pubsub-js");
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -15,14 +13,8 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import Tabs from "react-bootstrap/esm/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Row from "react-bootstrap/esm/Row";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Modal from "react-bootstrap/Modal";
 
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import { mybuild } from "./wasm/useEsbuild";
-import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
+import { useEsbuild } from "./wasm/useEsbuild";
 import { Sandbox } from "./components/Sandbox";
 import { AddFileModal } from "./components/AddFileModal";
 
@@ -48,16 +40,17 @@ const FILES = new Map<string, string>([
 const isJSFILE = /(?:js|jsx|ts|tsx)$/;
 
 function App() {
-  const [currFile, setcurrFile] = React.useState("index.ts");
-  const [filesContext, setFilesContext] = React.useState(FILES);
-  const [fileMap, setFilemap] = React.useState(FILEMAP);
-  const [radioValue, setRadioValue] = React.useState("JS");
-  const [output, setOutput] = React.useState("//waite for build");
-  const [htmlDoc, setHtmlDoc] = React.useState(
+  const [currFile, setcurrFile] = useState("index.ts");
+  const [filesContext, setFilesContext] = useState(FILES);
+  const [fileMap, setFilemap] = useState(FILEMAP);
+  const [radioValue, setRadioValue] = useState("JS");
+  const [output, setOutput] = useState("//waite for build");
+  const [htmlDoc, setHtmlDoc] = useState(
     "<html><body><h1>I'm iframe</h1></body></html>"
   );
 
-  const [show, setShow] = React.useState(false);
+  const myEsbuild = useEsbuild();
+  const [show, setShow] = useState(false);
   const hide = () => {
     setShow(false);
   };
@@ -76,7 +69,7 @@ function App() {
   const Click = () => {
     console.log("Click");
     (async () => {
-      const code = await mybuild(
+      const code = await myEsbuild(
         new Map([...filesContext].filter(([k, v]) => isJSFILE.test(k)))
       );
       setOutput(code);
@@ -107,7 +100,7 @@ function App() {
         <Navbar bg="warning">
           <Container>
             <Navbar.Brand>
-              React {version}
+              React 
               <ButtonGroup>
                 {radios.map((radio, idx) => (
                   <ToggleButton

@@ -3,8 +3,7 @@ import { Plugin, Loader, formatMessages, PartialMessage } from "esbuild-wasm";
 import { resolve, legacy } from "resolve.exports";
 import { parse as parsePackageName } from "parse-package-name";
 import { extname, join, urlJoin } from "./path";
-//import { state } from "./store"
-//import { builtinModules } from "./builtin-modules"
+
 
 const builtinModules = [
   "assert",
