@@ -29,11 +29,11 @@ export const AddFileModal = (props: any) => {
             <Form.Control
               value={fileName}
               onChange={handleFileName}
-              placeholder="New ts file name"
-              aria-label="New ts file name"
+              placeholder="New tsx file name"
+              aria-label="New tsx file name"
               aria-describedby="basic-addon2"
             />
-            <InputGroup.Text id="basic-addon2">.ts</InputGroup.Text>
+            <InputGroup.Text id="basic-addon2">.tsx</InputGroup.Text>
           </InputGroup>
         </Modal.Body>
         <Modal.Footer>

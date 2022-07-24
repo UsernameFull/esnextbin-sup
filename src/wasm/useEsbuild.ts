@@ -22,7 +22,7 @@ export const useEsbuild = () => {
     const build = async (files = fakefiles) => {
         const result = await esbuild.build({
             //...userConfig,
-            entryPoints: ["/project/index.ts"],
+            entryPoints: ["/project/index.tsx"],
             outdir: "/dist",
             format: "iife",
             write: false,

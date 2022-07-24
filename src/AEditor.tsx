@@ -1,4 +1,3 @@
-import React  = require("react");
 import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-javascript";
@@ -12,7 +11,6 @@ export const AEditor = (props) =>{
 
     const onChange = (newValue) => {
         updateFile(newValue)
-        //console.log("change", newValue);
     }
     return(
         <AceEditor
@@ -22,9 +20,11 @@ export const AEditor = (props) =>{
         name="UNIQUE_ID_OF_DIV"
         value={code}
         fontSize={16}
+        height="100%"
         showPrintMargin={false}
         enableLiveAutocompletion={true}
         editorProps={{
+            maxLines: Infinity,
             $blockScrolling: true,
         }}
         placeholder = "// insert code here"
