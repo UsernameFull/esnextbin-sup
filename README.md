@@ -2,7 +2,7 @@
 
 利用esbuild用纯浏览器环境打包，功能测试中
 
-## use age
+## useage
 ```
 npm i
 npm run dev
